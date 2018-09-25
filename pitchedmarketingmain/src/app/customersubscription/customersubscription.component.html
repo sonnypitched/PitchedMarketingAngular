@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-title>
+    <h3>Subscriptions</h3>
+  </mat-card-title>
+
+  <mat-card-content>
+    <div class="spinner-container" *ngIf="!isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <button (click)="createRecord()" mat-raised-button color="primary">Add Subscription</button>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="subscriptionname">
+        <th mat-header-cell *matHeaderCellDef> Account Subscription </th>
+        <td mat-cell *matCellDef="let model"> {{customersubscription.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let model">
+          <button (click)="viewRecord(model.id)" mat-raised-button color="primary">Select</button>
+          <button (click)="deleteRecord(model.id)" mat-raised-button color="warn">Delete</button>
+        </td>
+
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</mat-card>
+
+
+ 
+
+ 

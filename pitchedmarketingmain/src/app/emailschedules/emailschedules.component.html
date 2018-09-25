@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-title>
+    <h3>Email Scheduler</h3>
+  </mat-card-title>
+
+  <mat-card-content>
+    <section *ngIf="!isLoading">
+      <mat-spinner></mat-spinner>
+    </section>
+    <section *ngIf="isLoading">
+      <button (click)="createRecord()" mat-raised-button color="primary">Add Task</button>
+
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="taskName">
+          <th mat-header-cell *matHeaderCellDef> Task Name </th>
+          <td mat-cell *matCellDef="let model"> {{model.title}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let model">
+            <button (click)="viewRecord(model.id)" mat-raised-button color="primary">Select</button>
+            <button (click)="deleteRecord(model.id)" mat-raised-button color="warn">Delete</button>
+          </td>
+
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+    </section>
+  </mat-card-content>
+</mat-card>
+
+
+   

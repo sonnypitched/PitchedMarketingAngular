@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr.css';
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/font-awesome/css/font-awesome.css";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+/*top bar*/
+.mat-toolbar-row {
+  background-color:#122937 
+}
+button.mat-icon-button.mat-accent{
+  color: #fff;
+}
+
+.mat-sidenav {
+  background-color: #dce5ec;
+}

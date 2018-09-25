@@ -1,0 +1,25 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { User } from '../models/user.model';
+
+@Injectable()
+export class PitchedService  {
+
+  private customersUrl = 'https://jsonplaceholder.typicode.com/users/';
+
+  constructor(private http: HttpClient, public sanitizer: DomSanitizer) { }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.customersUrl);
+  }
+  
+  
+  getAll() {
+    return this.http
+      .get<any[]>(this.customersUrl)
+      .pipe(map(data => data));
+  }
+}

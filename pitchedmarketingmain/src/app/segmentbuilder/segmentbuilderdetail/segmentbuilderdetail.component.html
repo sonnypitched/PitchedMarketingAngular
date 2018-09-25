@@ -1,0 +1,51 @@
+
+<mat-card>
+
+  <mat-card-title>Segment Builder</mat-card-title>
+
+  <mat-card-content>
+    <form [formGroup]="segmentForm">
+      <mat-form-field>
+        <input matInput formControlName="segmentname" placeholder="Segment Name">
+      </mat-form-field>
+
+      <section>
+        <button mat-raised-button color="primary" (click)="addItem()">Add row</button>
+      </section>
+      <section>
+
+        <div formArrayName="items" *ngFor="let item of segmentForm.get('items').controls; let i = index;">
+
+          <div [formGroupName]="i">
+            <mat-form-field>
+              <mat-select formControlName="fieldname" placeholder="Select field">
+                <mat-option *ngFor="let field of fields" [value]="field.value">
+                  {{field.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select formControlName="operator" placeholder="Operator">
+                <mat-option *ngFor="let condition of conditions" [value]="condition.value">
+                  {{condition.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="conditionvalue1" placeholder="Value">
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput formControlName="conditionvalue2" placeholder="Value">
+            </mat-form-field>
+
+            <button mat-button color="warn" (click)="removeItem(i)">Delete</button>
+          </div>
+
+        </div>
+        <button mat-raised-button color="primary" *ngIf="saveButton" (click)="saveItem()">Save</button>
+
+
+      </section>
+    </form>
+  </mat-card-content>
+</mat-card>

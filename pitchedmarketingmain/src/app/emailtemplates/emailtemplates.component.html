@@ -1,0 +1,53 @@
+<mat-card>
+  <mat-card-title>
+    <h3>Email Templates</h3>
+  </mat-card-title>
+
+  <mat-card-content>
+    <section *ngIf="!isLoading">
+      <mat-spinner></mat-spinner>
+    </section>
+    <section *ngIf="isLoading">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let model"> {{model?.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="templateName">
+          <th mat-header-cell *matHeaderCellDef> Template </th>
+          <td mat-cell *matCellDef="let model"> {{model?.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="subject">
+          <th mat-header-cell *matHeaderCellDef> Subject </th>
+          <td mat-cell *matCellDef="let model"> {{model?.address?.street}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdBy">
+          <th mat-header-cell *matHeaderCellDef> Created By </th>
+          <td mat-cell *matCellDef="let model"> {{model?.username}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let model">
+            <button (click)="viewRecord(model.id)" mat-raised-button color="primary">Edit</button>
+          </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+
+        </tr>
+
+      </table>
+      <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+    </section>
+  </mat-card-content>
+</mat-card>

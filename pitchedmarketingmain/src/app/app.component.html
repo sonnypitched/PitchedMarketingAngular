@@ -1,0 +1,27 @@
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="accent">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span>
+      <img src="../assets/pitched-small.png" />
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #drawer mode="side" opened role="navigation">
+    <mat-nav-list>
+      <a mat-list-item routerLink='/segmentbuilder'>Segments</a>
+      <a mat-list-item routerLink='/emailtemplates'>Email Templates</a>
+      <a mat-list-item routerLink='/emailschedules'>Email Schedules</a>
+      <a mat-list-item routerLink='/customersubscription'>Subscriptions</a>
+      <a mat-list-item routerLink='/sourcecodes'>Source Codes</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
